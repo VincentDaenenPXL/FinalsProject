@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Quest | Vincent Daenen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <header class="site-header">
+    <a class="logo" href="index.html">I-TALENT</a>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="voorstellen.html">Voorstellen</a>
+      <a href="activiteiten.html">Activiteiten</a>
+      <a href="game.html">Game</a>
+    </nav>
+  </header>
+
+  <main class="container page">
+    <h1>Skill Quest: 3 Jaar Groei</h1>
+    <p class="lead">Gebruik pijltjestoetsen of WASD, verzamel alle skill-orbs en ga door de 3 jaren.</p>
+    <section class="game-panel">
+      <canvas id="gameCanvas" width="880" height="420" aria-label="Skill Quest game"></canvas>
+      <div class="game-info">
+        <p id="gameStatus">Jaar 1/3 - verzamel 4 skills</p>
+        <button id="restartBtn" class="btn btn-primary" type="button">Herstart</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Gemaakt door Vincent Daenen voor I-Talent.</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/game.js"></script>
+</body>
+</html>
