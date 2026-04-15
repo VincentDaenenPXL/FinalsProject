@@ -26,16 +26,42 @@
     <section class="hero-strip glass">
       <p class="eyebrow">Skill Quest</p>
       <h1>3 Jaar Groei in 1 Game</h1>
-      <p class="lead">Jaar 1 = IT basis, Jaar 2 = teamwork in projecten, Jaar 3 = complexe oplossingen onder druk.</p>
+      <p class="lead">Drie levels, elk met eigen mechaniek: IT-basis solo, teamwork met een echte teamgenoot, complexe crises onder tijdsdruk.</p>
     </section>
 
     <section class="game-panel glass">
-      <canvas id="gameCanvas" width="920" height="470" aria-label="Skill Quest game"></canvas>
+      <div class="game-legend">
+        <span class="legend-item"><span class="legend-dot legend-player"></span>Jij</span>
+        <span class="legend-item"><span class="legend-dot legend-team"></span>Teamgenoot (L2)</span>
+        <span class="legend-item"><span class="legend-dot legend-orb"></span>Skill-orb</span>
+        <span class="legend-item"><span class="legend-dot legend-team-orb"></span>Team-deliverable</span>
+        <span class="legend-item"><span class="legend-dot legend-bug"></span>Bug / Conflict</span>
+        <span class="legend-item"><span class="legend-dot legend-incident"></span>Incident (L3)</span>
+      </div>
+      <canvas id="gameCanvas" width="920" height="470" aria-label="Skill Quest — Progressiegame Vincent Daenen"></canvas>
       <div class="game-info">
         <p id="gameStatus">Laden...</p>
         <button id="restartBtn" class="btn btn-primary" type="button">Herstart</button>
       </div>
-      <p id="gameNarrative" class="mini-note">Gebruik pijltjestoetsen of WASD.</p>
+      <p id="gameNarrative" class="mini-note">Pijltjestoetsen of WASD · Spatie = roep teamgenoot (Jaar 2)</p>
+    </section>
+
+    <section class="game-guide glass">
+      <h2>Hoe werkt elk level?</h2>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <p class="guide-year" style="color:#2ad8b7">Jaar 1 — IT Basis</p>
+          <p>Verzamel alle kennisbolletjes. Vermijd de bugs. Solo, eenvoudig maar essentieel.</p>
+        </div>
+        <div class="guide-card">
+          <p class="guide-year" style="color:#f8b948">Jaar 2 — Teamwork</p>
+          <p>Je hebt een teamgenoot. Goudkleurige team-deliverables vragen dat jullie allebei aanwezig zijn. Oranje blockers jagen specifiek op je teamgenoot — houd hem bij je. <strong>SPATIE</strong> roept hem naar jou.</p>
+        </div>
+        <div class="guide-card">
+          <p class="guide-year" style="color:#8fc8ff">Jaar 3 — Complex</p>
+          <p>Skills zijn vergrendeld tot je de vereisten hebt. Security incidents breken uit — bereik ze op tijd of verlies een leven. Meer bedreigingen, minder tijd.</p>
+        </div>
+      </div>
     </section>
   </main>
 
