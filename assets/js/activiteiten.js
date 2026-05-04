@@ -421,6 +421,9 @@
       development: "Personal development",
       international: "Internationalisation",
       portfolio: "Portfolio",
+      modeFilter: "View",
+      allDomains: "All domains",
+      showing: "showing",
       total: "total activities",
       requiredStat: "required",
       extraStat: "extra",
@@ -444,6 +447,9 @@
       development: "Persoonlijke ontwikkeling",
       international: "Internationalisering",
       portfolio: "Portfolio",
+      modeFilter: "Weergave",
+      allDomains: "Alle domeinen",
+      showing: "zichtbaar",
       total: "activiteiten totaal",
       requiredStat: "verplicht",
       extraStat: "extra",
@@ -458,17 +464,21 @@
     }
   };
 
-  const filters = [
+  const modeFilters = [
     { key: "all", label: "all", test: () => true },
-    { key: "year-2", label: "year2", test: (item) => item.year === 2 },
-    { key: "year-3", label: "year3", test: (item) => item.year === 3 },
     { key: "required", label: "required", test: (item) => item.type === "required" },
     { key: "extra", label: "extra", test: (item) => item.type === "extra" },
-    { key: "seminars", label: "seminars", test: (item) => item.domain === "seminars" },
-    { key: "innovation", label: "innovation", test: (item) => item.domain === "innovation" },
-    { key: "development", label: "development", test: (item) => item.domain === "development" },
-    { key: "international", label: "international", test: (item) => item.domain === "international" },
-    { key: "portfolio", label: "portfolio", test: (item) => item.domain === "portfolio" }
+    { key: "year-2", label: "year2", test: (item) => item.year === 2 },
+    { key: "year-3", label: "year3", test: (item) => item.year === 3 }
+  ];
+
+  const domainOptions = [
+    { key: "all", label: "allDomains" },
+    { key: "seminars", label: "seminars" },
+    { key: "innovation", label: "innovation" },
+    { key: "development", label: "development" },
+    { key: "international", label: "international" },
+    { key: "portfolio", label: "portfolio" }
   ];
 
   const filtersRoot = document.getElementById("activity-filters");
@@ -479,7 +489,8 @@
     return;
   }
 
-  let activeFilter = "all";
+  let activeMode = "all";
+  let activeDomain = "all";
 
   function lang() {
     return window.PortfolioI18n ? window.PortfolioI18n.getLang() : "en";
@@ -552,8 +563,13 @@
     `;
   }
 
-  function currentFilter() {
-    return filters.find((filter) => filter.key === activeFilter) || filters[0];
+  function currentMode() {
+    return modeFilters.find((filter) => filter.key === activeMode) || modeFilters[0];
+  }
+
+  function passesFilters(item) {
+    const domainPass = activeDomain === "all" || item.domain === activeDomain;
+    return currentMode().test(item) && domainPass;
   }
 
   function renderStats() {
@@ -572,25 +588,52 @@
 
   function renderFilters() {
     const l = localLabels();
-
-    filtersRoot.innerHTML = filters
+    const filteredCount = activities.filter(passesFilters).length;
+    const modes = modeFilters
       .map((filter) => {
-        const active = filter.key === activeFilter;
-        return `<button class="filter-chip ${active ? "active" : ""}" type="button" data-filter="${filter.key}" aria-pressed="${active}">${escapeHTML(l[filter.label])}</button>`;
+        const active = filter.key === activeMode;
+        return `<button class="filter-chip ${active ? "active" : ""}" type="button" data-mode="${filter.key}" aria-pressed="${active}">${escapeHTML(l[filter.label])}</button>`;
       })
       .join("");
 
-    filtersRoot.querySelectorAll("[data-filter]").forEach((button) => {
+    const domains = domainOptions
+      .map((option) => `<option value="${option.key}" ${option.key === activeDomain ? "selected" : ""}>${escapeHTML(l[option.label])}</option>`)
+      .join("");
+
+    filtersRoot.innerHTML = `
+      <div class="filter-toolbar">
+        <div class="filter-block">
+          <span class="filter-label">${escapeHTML(l.modeFilter)}</span>
+          <div class="filter-segment" role="group" aria-label="${escapeHTML(l.modeFilter)}">
+            ${modes}
+          </div>
+        </div>
+        <label class="domain-select">
+          <span>${escapeHTML(l.domain)}</span>
+          <select data-domain-filter>
+            ${domains}
+          </select>
+        </label>
+      </div>
+      <p class="filter-summary">${filteredCount} / ${activities.length} ${escapeHTML(l.showing)}</p>
+    `;
+
+    filtersRoot.querySelectorAll("[data-mode]").forEach((button) => {
       button.addEventListener("click", () => {
-        activeFilter = button.dataset.filter;
+        activeMode = button.dataset.mode;
         render();
       });
+    });
+
+    const domainFilter = filtersRoot.querySelector("[data-domain-filter]");
+    domainFilter.addEventListener("change", () => {
+      activeDomain = domainFilter.value;
+      render();
     });
   }
 
   function renderCards() {
-    const filter = currentFilter();
-    const filtered = activities.filter(filter.test);
+    const filtered = activities.filter(passesFilters);
     grid.innerHTML = filtered.length
       ? filtered.map(cardTemplate).join("")
       : `<article class="activity-card"><div class="activity-body"><p>${escapeHTML(localLabels().noResults)}</p></div></article>`;

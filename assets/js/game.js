@@ -20,11 +20,11 @@
       lives: "Lives",
       time: "Time",
       level: "Level",
-      start: "Space or Enter to start",
-      next: "Space or Enter for next level",
-      finish: "Space or Enter for final screen",
-      retry: "Space or Enter to retry",
-      replay: "Space or Enter to play again",
+      start: "Space, Enter, or click to start",
+      next: "Space, Enter, or click for next level",
+      finish: "Space, Enter, or click for final screen",
+      retry: "Space, Enter, or click to retry",
+      replay: "Space, Enter, or click to play again",
       gameOver: "Game over",
       gameOverLine1: "Falling down is part of learning.",
       gameOverLine2: "Try again.",
@@ -35,7 +35,7 @@
         "This portfolio is not the end point.",
         "It is the starting point for what comes next."
       ],
-      teamCall: "Space: call teammate",
+      teamCall: "Space, Enter, or click: call teammate",
       teammateDazed: "Teammate paused",
       incident: "Security incident. Reach it fast.",
       requires: "needs",
@@ -48,11 +48,11 @@
       lives: "Levens",
       time: "Tijd",
       level: "Level",
-      start: "Space of Enter om te starten",
-      next: "Space of Enter voor het volgende level",
-      finish: "Space of Enter voor het eindscherm",
-      retry: "Space of Enter om opnieuw te proberen",
-      replay: "Space of Enter om opnieuw te spelen",
+      start: "Space, Enter of klik om te starten",
+      next: "Space, Enter of klik voor het volgende level",
+      finish: "Space, Enter of klik voor het eindscherm",
+      retry: "Space, Enter of klik om opnieuw te proberen",
+      replay: "Space, Enter of klik om opnieuw te spelen",
       gameOver: "Game over",
       gameOverLine1: "Vallen en opstaan hoort bij leren.",
       gameOverLine2: "Probeer opnieuw.",
@@ -63,7 +63,7 @@
         "Dit portfolio is geen eindpunt.",
         "Het is een vertrekpunt voor wat nog komt."
       ],
-      teamCall: "Space: roep teamgenoot",
+      teamCall: "Space, Enter of klik: roep teamgenoot",
       teammateDazed: "Teamgenoot pauzeert",
       incident: "Security incident. Bereik het snel.",
       requires: "vereist",
@@ -125,10 +125,10 @@
     {
       color: "#f1b84b",
       bg: "#19160f",
-      time: 84,
+      time: 105,
       speed: 3,
-      blockerCount: 3,
-      blockerSpeed: 1.7,
+      blockerCount: 2,
+      blockerSpeed: 1.45,
       incidents: false,
       teammate: true,
       label: {
@@ -143,12 +143,12 @@
         en: [
           "Some goals need a team.",
           "Gold deliverables unlock only when both players are present.",
-          "Press Space to call your teammate."
+          "Press Space, Enter, or click to call your teammate."
         ],
         nl: [
           "Sommige doelen vragen een team.",
           "Gouden deliverables komen vrij wanneer beide spelers aanwezig zijn.",
-          "Druk op Space om je teamgenoot te roepen."
+          "Druk op Space, Enter of klik om je teamgenoot te roepen."
         ]
       },
       complete: {
@@ -275,7 +275,7 @@
   }
 
   function isActionKey(event) {
-    return event.code === "Space" || event.key === " " || event.key === "Spacebar";
+    return event.code === "Space" || event.code === "Enter" || event.key === " " || event.key === "Spacebar";
   }
 
   function isHandledKey(event) {
@@ -320,11 +320,11 @@
       callTeammate = true;
     }
 
-    if (state === "INTRO" && (isActionKey(event) || event.code === "Enter")) {
+    if (state === "INTRO" && isActionKey(event)) {
       startLevel();
-    } else if (state === "LEVEL_COMPLETE" && (isActionKey(event) || event.code === "Enter")) {
+    } else if (state === "LEVEL_COMPLETE" && isActionKey(event)) {
       nextLevel();
-    } else if ((state === "GAME_OVER" || state === "WIN") && (isActionKey(event) || event.code === "Enter")) {
+    } else if ((state === "GAME_OVER" || state === "WIN") && isActionKey(event)) {
       restartGame();
     }
   });
@@ -337,6 +337,31 @@
   });
 
   restartBtn.addEventListener("click", restartGame);
+
+  canvas.addEventListener("mousedown", (event) => {
+    event.preventDefault();
+
+    if (state === "INTRO") {
+      startLevel();
+      return;
+    }
+    if (state === "LEVEL_COMPLETE") {
+      nextLevel();
+      return;
+    }
+    if (state === "GAME_OVER" || state === "WIN") {
+      restartGame();
+      return;
+    }
+
+    if (teammate) {
+      callTeammate = true;
+    }
+  });
+
+  window.addEventListener("mouseup", () => {
+    callTeammate = false;
+  });
 
   canvas.addEventListener("touchstart", (event) => {
     event.preventDefault();
@@ -660,15 +685,16 @@
       if (orb.team) {
         const teamNear = teammate && teammate.paused <= 0 && distance(teammate, orb) < teammate.r + orb.r;
         if (playerNear && teamNear) {
-          orb.progress += dt * 0.78;
+          orb.progress += dt * 0.38;
           if (orb.progress >= 1) {
             collectOrb(orb, cfg);
           }
-        } else {
-          orb.progress = Math.max(0, orb.progress - dt * 0.45);
         }
       } else if (playerNear) {
-        collectOrb(orb, cfg);
+        orb.progress += dt * 0.72;
+        if (orb.progress >= 1) {
+          collectOrb(orb, cfg);
+        }
       }
     });
 
@@ -709,6 +735,7 @@
   }
 
   function collectOrb(orb, cfg) {
+    orb.progress = 1;
     orb.taken = true;
     burst(orb.x, orb.y, cfg.color, orb.team ? 16 : 10);
   }
@@ -890,10 +917,10 @@
       ctx.lineWidth = locked ? 1.5 : 2.5;
       ctx.stroke();
 
-      if (orb.team && orb.progress > 0) {
+      if (orb.progress > 0) {
         ctx.beginPath();
         ctx.arc(orb.x, orb.y, orb.r + 6, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * orb.progress);
-        ctx.strokeStyle = "#f1b84b";
+        ctx.strokeStyle = orb.team ? "#f1b84b" : cfg.color;
         ctx.lineWidth = 4;
         ctx.stroke();
       }
