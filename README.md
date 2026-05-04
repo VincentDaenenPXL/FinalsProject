@@ -1,16 +1,18 @@
 # I-Talent Portfolio
 
-## Pagina's
+Static bilingual portfolio website for Vincent Daenen.
+
+## Pages
 - `index.html`
 - `voorstellen.html`
 - `activiteiten.html`
 - `game.html`
 
-## Foto's toevoegen aan activiteiten
-1. Plaats foto in `assets/img/activities/`
-2. Open `assets/js/activiteiten.js`
-3. Vul bij een activiteit `foto` in, bv:
-   `foto: "assets/img/activities/cegeka.jpg"`
+## Notes
+- The language toggle stores the selected language in local storage.
+- The activities are defined in `assets/js/activiteiten.js`.
+- The game supports arrow keys, WASD, and ZQSD for AZERTY keyboards.
+- The CTF proof image was extracted from the portfolio document into `assets/img/activities/portfolio-image2.png`.
 
 ## GitHub Pages
 - Settings -> Pages

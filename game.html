@@ -1,73 +1,80 @@
 <!doctype html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skill Quest | Vincent Daenen</title>
+  <title>Progression Game | Vincent Daenen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-  <header class="site-header glass">
-    <a class="logo" href="index.html">I-TALENT</a>
-    <nav class="site-nav">
-      <a href="index.html">Home</a>
-      <a href="voorstellen.html">Voorstellen</a>
-      <a href="activiteiten.html">Activiteiten</a>
-      <a href="game.html">Game</a>
+<body data-title-key="title.game">
+  <header class="site-header">
+    <a class="logo" href="index.html">VD I-Talent</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="voorstellen.html" data-i18n="nav.about">About</a>
+      <a href="activiteiten.html" data-i18n="nav.activities">Activities</a>
+      <a href="game.html" data-i18n="nav.game">Game</a>
     </nav>
+    <div class="language-toggle" role="group" data-i18n-aria="language.label" aria-label="Language">
+      <button type="button" data-lang-choice="en">EN</button>
+      <button type="button" data-lang-choice="nl">NL</button>
+    </div>
   </header>
 
   <main class="container page">
-    <section class="hero-strip glass">
-      <p class="eyebrow">Skill Quest</p>
-      <h1>3 Jaar Groei in 1 Game</h1>
-      <p class="lead">Drie levels, elk met eigen mechaniek: IT-basis solo, teamwork met een echte teamgenoot, complexe crises onder tijdsdruk.</p>
+    <section class="page-intro">
+      <p class="eyebrow" data-i18n="game.eyebrow">Skill Quest</p>
+      <h1 data-i18n="game.title">Three years of growth in one game</h1>
+      <p class="lead" data-i18n="game.lead">Move through foundation, teamwork, and complex security delivery while collecting the skills that shaped the portfolio.</p>
     </section>
 
-    <section class="game-panel glass">
+    <section class="game-shell">
       <div class="game-legend">
-        <span class="legend-item"><span class="legend-dot legend-player"></span>Jij</span>
-        <span class="legend-item"><span class="legend-dot legend-team"></span>Teamgenoot (L2)</span>
-        <span class="legend-item"><span class="legend-dot legend-orb"></span>Skill-orb</span>
-        <span class="legend-item"><span class="legend-dot legend-team-orb"></span>Team-deliverable</span>
-        <span class="legend-item"><span class="legend-dot legend-bug"></span>Bug / Conflict</span>
-        <span class="legend-item"><span class="legend-dot legend-incident"></span>Incident (L3)</span>
+        <span class="legend-item"><span class="legend-dot legend-player"></span><span data-i18n="game.legend.player">You</span></span>
+        <span class="legend-item"><span class="legend-dot legend-team"></span><span data-i18n="game.legend.team">Teammate</span></span>
+        <span class="legend-item"><span class="legend-dot legend-orb"></span><span data-i18n="game.legend.skill">Skill</span></span>
+        <span class="legend-item"><span class="legend-dot legend-team-orb"></span><span data-i18n="game.legend.teamorb">Team deliverable</span></span>
+        <span class="legend-item"><span class="legend-dot legend-bug"></span><span data-i18n="game.legend.blocker">Bug or conflict</span></span>
+        <span class="legend-item"><span class="legend-dot legend-incident"></span><span data-i18n="game.legend.incident">Incident</span></span>
       </div>
-      <canvas id="gameCanvas" width="920" height="470" aria-label="Skill Quest — Progressiegame Vincent Daenen"></canvas>
+
+      <canvas id="gameCanvas" width="920" height="470" data-i18n-aria="game.canvas.aria" aria-label="Skill Quest progression game"></canvas>
+
       <div class="game-info">
-        <p id="gameStatus">Laden...</p>
-        <button id="restartBtn" class="btn btn-primary" type="button">Herstart</button>
+        <p id="gameStatus">Loading...</p>
+        <div class="game-actions">
+          <span class="control-chip">WASD</span>
+          <span class="control-chip">ZQSD</span>
+          <span class="control-chip" data-i18n="game.controls.arrows">Arrows</span>
+          <button id="restartBtn" class="btn btn-primary" type="button" data-i18n="game.restart">Restart</button>
+        </div>
       </div>
-      <p id="gameNarrative" class="mini-note">Pijltjestoetsen of WASD · Spatie = roep teamgenoot (Jaar 2)</p>
+      <p id="gameNarrative" class="mini-note">Level 1 / 3</p>
     </section>
 
-    <section class="game-guide glass">
-      <h2>Hoe werkt elk level?</h2>
-      <div class="guide-grid">
-        <div class="guide-card">
-          <p class="guide-year" style="color:#2ad8b7">Jaar 1 — IT Basis</p>
-          <p>Verzamel alle kennisbolletjes. Vermijd de bugs. Solo, eenvoudig maar essentieel.</p>
-        </div>
-        <div class="guide-card">
-          <p class="guide-year" style="color:#f8b948">Jaar 2 — Teamwork</p>
-          <p>Je hebt een teamgenoot. Goudkleurige team-deliverables vragen dat jullie allebei aanwezig zijn. Oranje blockers jagen specifiek op je teamgenoot — houd hem bij je. <strong>SPATIE</strong> roept hem naar jou.</p>
-        </div>
-        <div class="guide-card">
-          <p class="guide-year" style="color:#8fc8ff">Jaar 3 — Complex</p>
-          <p>Skills zijn vergrendeld tot je de vereisten hebt. Security incidents breken uit — bereik ze op tijd of verlies een leven. Meer bedreigingen, minder tijd.</p>
-        </div>
-      </div>
+    <section class="game-guide">
+      <article class="guide-card">
+        <p class="guide-year year-one" data-i18n="game.guide.year1">Year 1: Foundation</p>
+        <p data-i18n="game.guide.year1.body">Collect the basic knowledge orbs and avoid bugs. The first level is simple, but it sets the base.</p>
+      </article>
+      <article class="guide-card">
+        <p class="guide-year year-two" data-i18n="game.guide.year2">Year 2: Teamwork</p>
+        <p data-i18n="game.guide.year2.body">Some deliverables need both you and your teammate. Call them back with Space when blockers split the team.</p>
+      </article>
+      <article class="guide-card">
+        <p class="guide-year year-three" data-i18n="game.guide.year3">Year 3: Complexity</p>
+        <p data-i18n="game.guide.year3.body">Skills unlock in sequence and incidents appear under time pressure. This is the security and cloud stretch.</p>
+      </article>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Gemaakt door Vincent Daenen voor I-Talent.</p>
+    <p data-i18n="footer.text">Made by Vincent Daenen for I-Talent at PXL University of Applied Sciences.</p>
   </footer>
+
   <script src="assets/js/main.js"></script>
   <script src="assets/js/game.js"></script>
 </body>

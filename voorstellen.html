@@ -1,45 +1,102 @@
 <!doctype html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Voorstellen | Vincent Daenen</title>
+  <title>About | Vincent Daenen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-  <header class="site-header glass">
-    <a class="logo" href="index.html">I-TALENT</a>
-    <nav class="site-nav">
-      <a href="index.html">Home</a>
-      <a href="voorstellen.html">Voorstellen</a>
-      <a href="activiteiten.html">Activiteiten</a>
-      <a href="game.html">Game</a>
+<body data-title-key="title.about">
+  <header class="site-header">
+    <a class="logo" href="index.html">VD I-Talent</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="voorstellen.html" data-i18n="nav.about">About</a>
+      <a href="activiteiten.html" data-i18n="nav.activities">Activities</a>
+      <a href="game.html" data-i18n="nav.game">Game</a>
     </nav>
+    <div class="language-toggle" role="group" data-i18n-aria="language.label" aria-label="Language">
+      <button type="button" data-lang-choice="en">EN</button>
+      <button type="button" data-lang-choice="nl">NL</button>
+    </div>
   </header>
 
   <main class="container page">
-    <section class="hero-strip glass">
-      <p class="eyebrow">Voorstelling</p>
+    <section class="page-intro">
+      <p class="eyebrow" data-i18n="about.eyebrow">Profile</p>
       <h1>Vincent Daenen</h1>
-      <p class="lead">Student Toegepaste Informatica met focus op cybersecurity, cloud en automatisatie.</p>
+      <p class="lead" data-i18n="about.lead">Applied Computer Science student with a clear interest in cybersecurity, cloud, and automation.</p>
+      <div class="skill-tags" aria-label="Focus areas">
+        <span class="skill-tag teal">Red Teaming</span>
+        <span class="skill-tag amber">DevOps / CI-CD</span>
+        <span class="skill-tag blue">Cloud</span>
+        <span class="skill-tag rose">DevSecOps</span>
+        <span class="skill-tag" data-i18n="about.tag.result">Result oriented</span>
+      </div>
     </section>
 
-    <section class="text-block">
-      <p>Mijn naam is Vincent Daenen. Wat mij boeit in IT is dat je voortdurend moet blijven leren en complexe problemen systematisch oplost.</p>
-      <p>Mijn sterktes liggen vandaag in DevOps en red teaming. Ik werk graag resultaatgericht naar een tastbare oplossing, met aandacht voor kwaliteit en technische diepgang.</p>
-      <p>Ik wil verder groeien in blue teaming en DevSecOps, zodat ik niet alleen sterke aanvallende inzichten heb, maar ook robuuste verdediging en secure-by-design aanpak kan uitbouwen.</p>
-      <p>Mijn ambitie is om eerst sterke werkervaring op te bouwen en later op lange termijn een eigen cybersecuritybedrijf uit te bouwen met duurzame oplossingen.</p>
+    <section class="about-layout">
+      <div class="about-main">
+        <article class="text-panel">
+          <p class="eyebrow" data-i18n="about.who.kicker">Who am I?</p>
+          <p data-i18n="about.who.p1">My name is Vincent Daenen. I study Applied Computer Science and I am especially interested in cloud computing, automation, and cybersecurity. What attracts me to IT is continuous learning and solving realistic, complex problems.</p>
+          <p data-i18n="about.who.p2">My strongest current areas are DevOps and red teaming. DevOps fits my interest in CI/CD, infrastructure as code, and automating repeated work. Red teaming pushes me to think creatively and critically from an attacker's perspective.</p>
+          <p data-i18n="about.who.p3">My Thalento profile points to an analytical and result-oriented working style. I prepare decisions carefully, try to limit risks, and stay motivated when the technical challenge has real depth.</p>
+        </article>
+
+        <article class="text-panel">
+          <p class="eyebrow" data-i18n="about.growth.kicker">Growth points</p>
+          <p data-i18n="about.growth.p1">Blue teaming and DevSecOps are areas where I currently have less experience, but they are clear learning goals. I want to strengthen detection, monitoring, secure-by-design work, and the defensive side of security.</p>
+          <p data-i18n="about.growth.p2">The POP sessions helped me notice that I sometimes make a problem too complex too early. A strong, well understood foundation matters before advanced solutions can work reliably.</p>
+          <p data-i18n="about.growth.p3">I also learned that I should communicate progress sooner in teams. I tend to wait until something is finished, but projects benefit from earlier updates and clearer agreements.</p>
+        </article>
+
+        <article class="text-panel">
+          <p class="eyebrow" data-i18n="about.ambition.kicker">Ambition</p>
+          <p data-i18n="about.ambition.p1">In the medium term I want practical experience in cybersecurity, cloud environments, and automation. After my internship, my concrete goal is a job in cybersecurity, preferably with a focus on pentesting or offensive security.</p>
+          <p data-i18n="about.ambition.p2">In the long term I would like to start a company in cybersecurity. Not from quick enthusiasm, but from a solid technical base and enough field experience to build thoughtful solutions.</p>
+        </article>
+      </div>
+
+      <aside class="profile-panel">
+        <div class="profile-avatar">VD</div>
+        <p class="profile-name">Vincent Daenen</p>
+        <p class="profile-role" data-i18n="about.role">Applied Computer Science student at PXL</p>
+
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <span class="stat-num">3</span>
+            <span class="stat-label" data-i18n="about.stats.years">years at PXL</span>
+          </div>
+          <div class="profile-stat">
+            <span class="stat-num">20</span>
+            <span class="stat-label" data-i18n="about.stats.activities">activities</span>
+          </div>
+        </div>
+
+        <div class="focus-section">
+          <p class="focus-label" data-i18n="about.focus">Focus</p>
+          <div class="focus-item"><span class="focus-dot dot-teal"></span>Red Teaming</div>
+          <div class="focus-item"><span class="focus-dot dot-amber"></span>DevSecOps</div>
+          <div class="focus-item"><span class="focus-dot dot-blue"></span>Cloud &amp; Infra</div>
+        </div>
+
+        <div class="focus-section">
+          <p class="focus-label" data-i18n="about.workpoints">Work points</p>
+          <div class="focus-item"><span class="focus-dot dot-rose"></span>Blue Teaming</div>
+          <div class="focus-item"><span class="focus-dot dot-rose"></span><span data-i18n="about.workpoint.communication">Proactive communication</span></div>
+        </div>
+      </aside>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Gemaakt door Vincent Daenen voor I-Talent.</p>
+    <p data-i18n="footer.text">Made by Vincent Daenen for I-Talent at PXL University of Applied Sciences.</p>
   </footer>
+
   <script src="assets/js/main.js"></script>
 </body>
 </html>

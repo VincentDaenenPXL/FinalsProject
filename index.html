@@ -1,58 +1,99 @@
 <!doctype html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vincent Daenen | I-Talent Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-
-  <header class="site-header glass">
-    <a class="logo" href="index.html">I-TALENT</a>
-    <nav class="site-nav">
-      <a href="index.html">Home</a>
-      <a href="voorstellen.html">Voorstellen</a>
-      <a href="activiteiten.html">Activiteiten</a>
-      <a href="game.html">Game</a>
+<body data-title-key="title.home">
+  <header class="site-header">
+    <a class="logo" href="index.html">VD I-Talent</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="voorstellen.html" data-i18n="nav.about">About</a>
+      <a href="activiteiten.html" data-i18n="nav.activities">Activities</a>
+      <a href="game.html" data-i18n="nav.game">Game</a>
     </nav>
+    <div class="language-toggle" role="group" data-i18n-aria="language.label" aria-label="Language">
+      <button type="button" data-lang-choice="en">EN</button>
+      <button type="button" data-lang-choice="nl">NL</button>
+    </div>
   </header>
 
-  <main class="container hero">
-    <section class="hero-strip glass">
-      <p class="eyebrow">Portfolio 2025-2026</p>
-      <h1>Van nul in IT naar complexe oplossingen</h1>
-      <p class="lead">Dit portfolio toont mijn groei over 3 jaar: IT-basis, teamwork in projecten en uiteindelijk het bouwen van complexe technische oplossingen in cloud en cybersecurity.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="activiteiten.html">Bekijk Activiteiten</a>
-        <a class="btn btn-ghost" href="game.html">Speel Progressie Game</a>
+  <main class="container home-page">
+    <section class="hero-layout">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="home.eyebrow">I-Talent portfolio 2023-2026</p>
+        <h1 data-i18n="home.title">From IT fundamentals to security-focused delivery</h1>
+        <p class="lead" data-i18n="home.lead">A bilingual portfolio about three years of growth at PXL, built around cloud, DevOps, cybersecurity, teamwork, and reflection.</p>
+        <div class="skill-tags" aria-label="Focus areas">
+          <span class="skill-tag teal">Red Teaming</span>
+          <span class="skill-tag amber">DevOps</span>
+          <span class="skill-tag blue">Cloud</span>
+          <span class="skill-tag rose">DevSecOps</span>
+          <span class="skill-tag" data-i18n="home.tag.analysis">Analytical</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="activiteiten.html" data-i18n="home.cta.activities">View activities</a>
+          <a class="btn btn-ghost" href="game.html" data-i18n="home.cta.game">Play progression game</a>
+        </div>
       </div>
+
+      <aside class="progress-board" data-i18n-aria="home.board.aria" aria-label="Three year progression">
+        <div class="board-header">
+          <p class="board-kicker" data-i18n="home.board.kicker">PXL growth path</p>
+          <p class="board-score">20 <span data-i18n="home.board.activities">activities</span></p>
+        </div>
+        <div class="progress-lane">
+          <div class="lane-node node-one">
+            <span>01</span>
+            <strong data-i18n="home.year1.title">Foundation</strong>
+            <small data-i18n="home.year1.short">IT basics</small>
+          </div>
+          <div class="lane-node node-two">
+            <span>02</span>
+            <strong data-i18n="home.year2.title">Collaboration</strong>
+            <small data-i18n="home.year2.short">Projects and feedback</small>
+          </div>
+          <div class="lane-node node-three">
+            <span>03</span>
+            <strong data-i18n="home.year3.title">Complexity</strong>
+            <small data-i18n="home.year3.short">Security and cloud</small>
+          </div>
+        </div>
+      </aside>
     </section>
 
-    <section class="grid-cards">
-      <article class="card">
-        <h2>Jaar 1</h2>
-        <p>Fundamenten: basis IT, eerste security-inzichten en structuur in probleemoplossing.</p>
+    <section class="year-grid" aria-label="Portfolio years">
+      <article class="year-card" data-year="1">
+        <span class="year-number">01</span>
+        <p class="year-label" data-i18n="home.year1.label">Year 1</p>
+        <h2 data-i18n="home.year1.title">Foundation</h2>
+        <p data-i18n="home.year1.body">HTML, networking, problem solving, and the first security concepts formed the base for everything that followed.</p>
       </article>
-      <article class="card">
-        <h2>Jaar 2</h2>
-        <p>Teamwork en projectdynamiek: samenwerken, feedback verwerken en iteratief bouwen.</p>
+      <article class="year-card" data-year="2">
+        <span class="year-number">02</span>
+        <p class="year-label" data-i18n="home.year2.label">Year 2</p>
+        <h2 data-i18n="home.year2.title">Collaboration</h2>
+        <p data-i18n="home.year2.body">Research project work, POP sessions, seminars, and Cardiff made teamwork and communication much more concrete.</p>
       </article>
-      <article class="card">
-        <h2>Jaar 3</h2>
-        <p>Complexe delivery: cloud, security, automatisatie en oplossingen onder druk.</p>
+      <article class="year-card" data-year="3">
+        <span class="year-number">03</span>
+        <p class="year-label" data-i18n="home.year3.label">Year 3</p>
+        <h2 data-i18n="home.year3.title">Complexity</h2>
+        <p data-i18n="home.year3.body">Cloud, DevSecOps, penetration testing, incident response, and cybersecurity competitions pushed the work closer to the field.</p>
       </article>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Gemaakt door Vincent Daenen voor I-Talent.</p>
+    <p data-i18n="footer.text">Made by Vincent Daenen for I-Talent at PXL University of Applied Sciences.</p>
   </footer>
+
   <script src="assets/js/main.js"></script>
 </body>
 </html>
