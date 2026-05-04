@@ -17,25 +17,20 @@
   const ui = {
     en: {
       skills: "Skills",
-      lives: "Lives",
-      time: "Time",
       level: "Level",
       start: "Space, Enter, or click to start",
       next: "Space, Enter, or click for next level",
       finish: "Space, Enter, or click for final screen",
-      retry: "Space, Enter, or click to retry this level",
       replay: "Space, Enter, or click to play again",
-      gameOver: "Game over",
-      gameOverLine1: "Falling down is part of learning.",
-      gameOverLine2: "Your completed years stay unlocked.",
       winTitle: "Congratulations, Vincent",
       winLines: [
-        "From IT fundamentals to cloud, security, and DevSecOps.",
+        "From IT fundamentals to automation, advanced networking, and security.",
         "You learned to collaborate, communicate, and work under pressure.",
         "This portfolio is not the end point.",
         "It is the starting point for what comes next."
       ],
       teamCall: "Space, Enter, or click: call teammate",
+      playerPaused: "Player paused",
       teammateDazed: "Teammate paused",
       incident: "Security incident. Reach it fast.",
       requires: "needs",
@@ -45,25 +40,20 @@
     },
     nl: {
       skills: "Skills",
-      lives: "Levens",
-      time: "Tijd",
       level: "Level",
       start: "Space, Enter of klik om te starten",
       next: "Space, Enter of klik voor het volgende level",
       finish: "Space, Enter of klik voor het eindscherm",
-      retry: "Space, Enter of klik om dit level opnieuw te proberen",
       replay: "Space, Enter of klik om opnieuw te spelen",
-      gameOver: "Game over",
-      gameOverLine1: "Vallen en opstaan hoort bij leren.",
-      gameOverLine2: "Je voltooide jaren blijven vrijgespeeld.",
       winTitle: "Proficiat, Vincent",
       winLines: [
-        "Van IT-basis naar cloud, security en DevSecOps.",
+        "Van IT-basis naar automatisatie, geavanceerd netwerkbeheer en security.",
         "Je leerde samenwerken, communiceren en presteren onder druk.",
         "Dit portfolio is geen eindpunt.",
         "Het is een vertrekpunt voor wat nog komt."
       ],
       teamCall: "Space, Enter of klik: roep teamgenoot",
+      playerPaused: "Speler gepauzeerd",
       teammateDazed: "Teamgenoot pauzeert",
       incident: "Security incident. Bereik het snel.",
       requires: "vereist",
@@ -77,7 +67,6 @@
     {
       color: "#3dd6ad",
       bg: "#111817",
-      time: 72,
       speed: 3.25,
       blockerCount: 2,
       blockerSpeed: 1.35,
@@ -115,17 +104,17 @@
         ]
       },
       orbs: [
-        { key: "html", name: { en: "HTML/CSS", nl: "HTML/CSS" }, x: 0.2, y: 0.22 },
-        { key: "networking", name: { en: "Networking", nl: "Netwerken" }, x: 0.52, y: 0.16 },
-        { key: "fundamentals", name: { en: "IT basics", nl: "IT-basis" }, x: 0.78, y: 0.28 },
-        { key: "logic", name: { en: "Logic", nl: "Logica" }, x: 0.32, y: 0.7 },
-        { key: "problem", name: { en: "Problem solving", nl: "Probleemoplossing" }, x: 0.78, y: 0.72 }
+        { key: "networking", name: { en: "Networking", nl: "Netwerken" }, x: 0.2, y: 0.3 },
+        { key: "linux", name: { en: "Linux", nl: "Linux" }, x: 0.4, y: 0.15, effort: 2.0 },
+        { key: "programming", name: { en: "Programming", nl: "Programmeren" }, x: 0.6, y: 0.15, effort: 2.0 },
+        { key: "business", name: { en: "Business", nl: "Business" }, x: 0.8, y: 0.3 },
+        { key: "planning", name: { en: "Planning", nl: "Planning" }, x: 0.3, y: 0.7 },
+        { key: "cybersec1", name: { en: "Cybersec pt1", nl: "Cybersec pt1" }, x: 0.7, y: 0.7 }
       ]
     },
     {
       color: "#f1b84b",
       bg: "#19160f",
-      time: 105,
       speed: 3,
       blockerCount: 2,
       blockerSpeed: 1.45,
@@ -164,18 +153,18 @@
         ]
       },
       orbs: [
-        { key: "communication", name: { en: "Communication", nl: "Communicatie" }, x: 0.14, y: 0.28 },
-        { key: "planning", name: { en: "Planning", nl: "Planning" }, x: 0.54, y: 0.16 },
-        { key: "feedback", name: { en: "Feedback", nl: "Feedback" }, x: 0.84, y: 0.28 },
-        { key: "project", name: { en: "2TIN project", nl: "Projectweek 2TIN" }, x: 0.22, y: 0.68, team: true, effort: 2.65 },
-        { key: "cardiff", name: { en: "Cardiff PoC", nl: "Cardiff PoC" }, x: 0.56, y: 0.75, team: true, effort: 4.1 },
-        { key: "pop", name: { en: "POP session", nl: "POP-sessie" }, x: 0.82, y: 0.65, team: true, effort: 1.55 }
+        { key: "networking2", name: { en: "Networking pt2", nl: "Netwerken pt2" }, x: 0.14, y: 0.28 },
+        { key: "devops", name: { en: "DevOps", nl: "DevOps" }, x: 0.54, y: 0.16 },
+        { key: "docker", name: { en: "Docker", nl: "Docker" }, x: 0.84, y: 0.28 },
+        { key: "cybersec2", name: { en: "Cybersec pt2", nl: "Cybersec pt2" }, x: 0.3, y: 0.45 },
+        { key: "project-org", name: { en: "Project Organization", nl: "Projectorganisatie" }, x: 0.7, y: 0.45, effort: 2.5 },
+        { key: "project", name: { en: "2TIN project", nl: "Projectweek 2TIN" }, x: 0.22, y: 0.75, team: true, effort: 2.65 },
+        { key: "cardiff", name: { en: "Cardiff PoC", nl: "Cardiff PoC" }, x: 0.78, y: 0.75, team: true, effort: 4.1 }
       ]
     },
     {
       color: "#86bdf0",
       bg: "#11131a",
-      time: 92,
       speed: 3.45,
       blockerCount: 4,
       blockerSpeed: 2.05,
@@ -205,31 +194,27 @@
       },
       complete: {
         en: [
-          "Cloud, security, DevSecOps, and incident response are collected.",
+          "Advanced automation, networking, and security skills are collected.",
           "The three-year progression is complete."
         ],
         nl: [
-          "Cloud, security, DevSecOps en incident response zijn verzameld.",
+          "Geavanceerde skills in automatisatie, netwerken en security zijn verzameld.",
           "De progressie over drie jaar is compleet."
         ]
       },
       orbs: [
-        { key: "cloud", name: { en: "Cloud", nl: "Cloud" }, x: 0.14, y: 0.22 },
-        { key: "devops", name: { en: "DevOps", nl: "DevOps" }, x: 0.4, y: 0.14 },
-        { key: "security", name: { en: "Security", nl: "Security" }, x: 0.68, y: 0.2, requires: "cloud", effort: 1.65 },
-        { key: "devsecops", name: { en: "DevSecOps", nl: "DevSecOps" }, x: 0.82, y: 0.5, requires: ["devops", "security"], team: true, effort: 3.2 },
-        { key: "incident-response", name: { en: "Incident response", nl: "Incident response" }, x: 0.52, y: 0.72, requires: "devsecops", team: true, effort: 3.4 },
-        { key: "architecture", name: { en: "Architecture", nl: "Architectuur" }, x: 0.18, y: 0.74, requires: "incident-response", team: true, effort: 3.0 }
+        { key: "automation", name: { en: "Automation", nl: "Automatisatie" }, x: 0.14, y: 0.22 },
+        { key: "networking3", name: { en: "Networking pt3", nl: "Netwerken pt3" }, x: 0.4, y: 0.14 },
+        { key: "kubernetes", name: { en: "Kubernetes", nl: "Kubernetes" }, x: 0.68, y: 0.2, requires: "automation", effort: 1.65 },
+        { key: "cybersec3", name: { en: "Cybersec pt3", nl: "Cybersec pt3" }, x: 0.82, y: 0.5, requires: "kubernetes", team: true, effort: 3.2 },
+        { key: "itproject", name: { en: "IT Project", nl: "IT-project" }, x: 0.45, y: 0.72, requires: ["cybersec3", "networking3"], team: true, effort: 5.0 }
       ]
     }
   ];
 
   let state = "INTRO";
   let levelIndex = 0;
-  let lives = 3;
-  let timeLeft = 0;
   let lastTick = 0;
-  let lastDamageAt = 0;
   let player = null;
   let teammate = null;
   let orbs = [];
@@ -325,7 +310,7 @@
       startLevel();
     } else if (state === "LEVEL_COMPLETE" && isActionKey(event)) {
       nextLevel();
-    } else if ((state === "GAME_OVER" || state === "WIN") && isActionKey(event)) {
+    } else if (state === "WIN" && isActionKey(event)) {
       restartGame();
     }
   });
@@ -350,7 +335,7 @@
       nextLevel();
       return;
     }
-    if (state === "GAME_OVER" || state === "WIN") {
+    if (state === "WIN") {
       restartGame();
       return;
     }
@@ -376,7 +361,7 @@
       nextLevel();
       return;
     }
-    if (state === "GAME_OVER" || state === "WIN") {
+    if (state === "WIN") {
       restartGame();
       return;
     }
@@ -416,9 +401,6 @@
   function initLevel() {
     const cfg = config();
     state = "INTRO";
-    lives = 3;
-    timeLeft = cfg.time;
-    lastDamageAt = 0;
     incident = null;
     incidentTimer = cfg.incidents ? cfg.incidentEvery : Infinity;
     particles = [];
@@ -426,7 +408,7 @@
     shakeTime = 0;
     shakePower = 0;
 
-    player = { x: 58, y: H / 2, r: 13, speed: cfg.speed };
+    player = { x: 58, y: H / 2, r: 13, speed: cfg.speed, paused: 0 };
     teammate = cfg.teammate
       ? { x: 96, y: H / 2 + 34, r: 11, tx: 160, ty: H / 2, wait: 0, paused: 0 }
       : null;
@@ -487,28 +469,21 @@
     const remaining = orbs.filter((orb) => !orb.taken).length;
 
     if (state === "WIN") {
-      statusEl.textContent = `${copy.completed} | ${copy.skills}: 0 | ${copy.lives}: ${lives}`;
+      statusEl.textContent = `${copy.completed} | ${copy.skills}: 0`;
       narrativeEl.textContent = copy.replay;
       return;
     }
 
-    statusEl.textContent = `${tr(cfg.label)} | ${copy.skills}: ${remaining} | ${copy.lives}: ${lives} | ${copy.time}: ${Math.ceil(timeLeft)}s`;
+    statusEl.textContent = `${tr(cfg.label)} | ${copy.skills}: ${remaining}`;
     narrativeEl.textContent = tr(cfg.eyebrow);
   }
 
   function update(now, dt) {
     const cfg = config();
 
-    timeLeft -= dt;
-    if (timeLeft <= 0) {
-      state = "GAME_OVER";
-      updateStatus();
-      return;
-    }
-
     updateShake(dt);
     updateParticles(now);
-    updatePlayer();
+    updatePlayer(dt);
     updateTeammate(dt);
     updateBlockers(cfg);
     updateIncident(dt, cfg);
@@ -538,9 +513,14 @@
     });
   }
 
-  function updatePlayer() {
+  function updatePlayer(dt) {
     let dx = 0;
     let dy = 0;
+
+    if (player.paused > 0) {
+      player.paused -= dt;
+      return;
+    }
 
     if (keyDown("ArrowUp", "KeyW", "KeyZ", "w", "z")) {
       dy -= 1;
@@ -670,11 +650,8 @@
 
     if (incident.ttl <= 0) {
       incident = null;
-      lives -= 1;
+      player.paused = 3.0;
       shake(0.35, 9);
-      if (lives <= 0) {
-        state = "GAME_OVER";
-      }
     }
   }
 
@@ -702,22 +679,16 @@
       }
     });
 
-    if (now - lastDamageAt > 1050) {
+    if (player.paused <= 0) {
       const hit = blockers.find((blocker) => distance(player, blocker) < player.r + blocker.r);
       if (hit) {
-        lives -= 1;
-        lastDamageAt = now;
+        player.paused = 2.1;
         player.x = 58;
         player.y = H / 2;
         burst(player.x, player.y, "#f06b8f", 12);
         shake(0.32, 8);
-        if (lives <= 0) {
-          state = "GAME_OVER";
-          return;
-        }
       }
     }
-
     if (teammate && teammate.paused <= 0) {
       const teamHit = blockers.find((blocker) => distance(teammate, blocker) < teammate.r + blocker.r);
       if (teamHit) {
@@ -800,12 +771,6 @@
       return;
     }
 
-    if (state === "GAME_OVER") {
-      drawMessageScreen(cfg, text().gameOver, [text().gameOverLine1, text().gameOverLine2], text().retry, "#f06b8f");
-      ctx.restore();
-      return;
-    }
-
     if (state === "WIN") {
       drawWinScreen();
       ctx.restore();
@@ -821,7 +786,7 @@
     if (teammate) {
       drawTeammate(now);
     }
-    drawPlayer(cfg);
+    drawPlayer(cfg, now);
     drawHud(cfg);
 
     ctx.restore();
@@ -984,7 +949,19 @@
     });
   }
 
-  function drawPlayer(cfg) {
+  function drawPlayer(cfg, now) {
+    const alpha = player.paused > 0 ? 0.45 + Math.abs(Math.sin(now / 100)) * 0.35 : 1;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+
+    if (player.paused > 0) {
+      ctx.fillStyle = "#f06b8f";
+      ctx.font = "800 9px 'Space Grotesk', Arial";
+      ctx.textAlign = "center";
+      ctx.fillText(text().playerPaused.toUpperCase(), player.x, player.y + player.r + 15);
+      ctx.textAlign = "start";
+    }
+
     ctx.beginPath();
     ctx.arc(player.x, player.y, player.r * 2, 0, Math.PI * 2);
     ctx.fillStyle = `${cfg.color}30`;
@@ -1002,6 +979,8 @@
     ctx.arc(player.x + 4, player.y - 2, 4, 0, Math.PI * 2);
     ctx.fillStyle = cfg.color;
     ctx.fill();
+
+    ctx.restore();
   }
 
   function drawTeammate(now) {
@@ -1065,29 +1044,6 @@
     ctx.fillStyle = cfg.color;
     ctx.font = "800 15px 'Space Grotesk', Arial";
     ctx.fillText(tr(cfg.label), 12, 24);
-
-    for (let i = 0; i < 3; i += 1) {
-      ctx.fillStyle = i < lives ? "#f06b8f" : "rgba(244,241,232,0.18)";
-      ctx.fillRect(12 + i * 20, H - 22, 13, 13);
-    }
-
-    const ratio = clamp(timeLeft / cfg.time, 0, 1);
-    const barWidth = 164;
-    const x = W - barWidth - 12;
-    const y = H - 23;
-
-    ctx.fillStyle = "rgba(244,241,232,0.12)";
-    roundedRect(x, y, barWidth, 10, 5);
-    ctx.fill();
-    ctx.fillStyle = ratio > 0.35 ? cfg.color : ratio > 0.18 ? "#f1b84b" : "#f06b8f";
-    roundedRect(x, y, barWidth * ratio, 10, 5);
-    ctx.fill();
-
-    ctx.fillStyle = "#c9c3b6";
-    ctx.font = "800 11px 'Outfit', Arial";
-    ctx.textAlign = "right";
-    ctx.fillText(`${Math.ceil(timeLeft)}s`, W - 12, y - 5);
-    ctx.textAlign = "start";
 
     if (teammate) {
       ctx.fillStyle = "rgba(241,184,75,0.75)";
