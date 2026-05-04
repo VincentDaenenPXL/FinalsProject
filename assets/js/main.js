@@ -84,7 +84,7 @@
       "game.guide.year2": "Year 2: Teamwork",
       "game.guide.year2.body": "Some deliverables need both you and your teammate. Call them back with Space, Enter, or a canvas click when blockers split the team.",
       "game.guide.year3": "Year 3: Complexity",
-      "game.guide.year3.body": "Skills unlock in sequence and incidents appear under time pressure. This is the security and cloud stretch."
+      "game.guide.year3.body": "Skills unlock in sequence, then the advanced work needs your teammate. Incidents still create pressure, but the focus is progression."
     },
     nl: {
       "title.home": "Vincent Daenen | I-Talent Portfolio",
@@ -165,7 +165,7 @@
       "game.guide.year2": "Jaar 2: Teamwork",
       "game.guide.year2.body": "Sommige deliverables vragen zowel jou als je teamgenoot. Roep je teamgenoot terug met Space, Enter of een klik op het canvas wanneer blockers het team splitsen.",
       "game.guide.year3": "Jaar 3: Complexiteit",
-      "game.guide.year3.body": "Skills komen in volgorde vrij en incidenten verschijnen onder tijdsdruk. Dit is de security- en cloudstretch."
+      "game.guide.year3.body": "Skills komen in volgorde vrij, daarna vraagt het geavanceerde werk je teamgenoot. Incidenten zorgen nog voor druk, maar progressie staat centraal."
     }
   };
 

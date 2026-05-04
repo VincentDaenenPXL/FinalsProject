@@ -23,11 +23,11 @@
       start: "Space, Enter, or click to start",
       next: "Space, Enter, or click for next level",
       finish: "Space, Enter, or click for final screen",
-      retry: "Space, Enter, or click to retry",
+      retry: "Space, Enter, or click to retry this level",
       replay: "Space, Enter, or click to play again",
       gameOver: "Game over",
       gameOverLine1: "Falling down is part of learning.",
-      gameOverLine2: "Try again.",
+      gameOverLine2: "Your completed years stay unlocked.",
       winTitle: "Congratulations, Vincent",
       winLines: [
         "From IT fundamentals to cloud, security, and DevSecOps.",
@@ -51,11 +51,11 @@
       start: "Space, Enter of klik om te starten",
       next: "Space, Enter of klik voor het volgende level",
       finish: "Space, Enter of klik voor het eindscherm",
-      retry: "Space, Enter of klik om opnieuw te proberen",
+      retry: "Space, Enter of klik om dit level opnieuw te proberen",
       replay: "Space, Enter of klik om opnieuw te spelen",
       gameOver: "Game over",
       gameOverLine1: "Vallen en opstaan hoort bij leren.",
-      gameOverLine2: "Probeer opnieuw.",
+      gameOverLine2: "Je voltooide jaren blijven vrijgespeeld.",
       winTitle: "Proficiat, Vincent",
       winLines: [
         "Van IT-basis naar cloud, security en DevSecOps.",
@@ -167,21 +167,22 @@
         { key: "communication", name: { en: "Communication", nl: "Communicatie" }, x: 0.14, y: 0.28 },
         { key: "planning", name: { en: "Planning", nl: "Planning" }, x: 0.54, y: 0.16 },
         { key: "feedback", name: { en: "Feedback", nl: "Feedback" }, x: 0.84, y: 0.28 },
-        { key: "project", name: { en: "2TIN project", nl: "Projectweek 2TIN" }, x: 0.22, y: 0.68, team: true },
-        { key: "cardiff", name: { en: "Cardiff PoC", nl: "Cardiff PoC" }, x: 0.56, y: 0.75, team: true },
-        { key: "pop", name: { en: "POP session", nl: "POP-sessie" }, x: 0.82, y: 0.65, team: true }
+        { key: "project", name: { en: "2TIN project", nl: "Projectweek 2TIN" }, x: 0.22, y: 0.68, team: true, effort: 2.65 },
+        { key: "cardiff", name: { en: "Cardiff PoC", nl: "Cardiff PoC" }, x: 0.56, y: 0.75, team: true, effort: 4.1 },
+        { key: "pop", name: { en: "POP session", nl: "POP-sessie" }, x: 0.82, y: 0.65, team: true, effort: 1.55 }
       ]
     },
     {
       color: "#86bdf0",
       bg: "#11131a",
-      time: 70,
-      speed: 3.7,
-      blockerCount: 5,
-      blockerSpeed: 2.25,
+      time: 92,
+      speed: 3.45,
+      blockerCount: 4,
+      blockerSpeed: 2.05,
       incidents: true,
-      incidentEvery: 17,
-      incidentWindow: 8,
+      incidentEvery: 19,
+      incidentWindow: 9,
+      teammate: true,
       label: {
         en: "Year 3: Complexity",
         nl: "Jaar 3: Complexiteit"
@@ -193,13 +194,13 @@
       intro: {
         en: [
           "Advanced skills unlock in sequence.",
-          "Security incidents appear under time pressure.",
-          "Reach incidents before the timer runs out."
+          "Some skills need your teammate beside you.",
+          "Keep the delivery moving while incidents appear."
         ],
         nl: [
           "Geavanceerde skills komen in volgorde vrij.",
-          "Securityincidenten verschijnen onder tijdsdruk.",
-          "Bereik incidenten voordat de timer afloopt."
+          "Sommige skills vragen je teamgenoot naast je.",
+          "Houd de delivery op gang terwijl incidenten verschijnen."
         ]
       },
       complete: {
@@ -215,10 +216,10 @@
       orbs: [
         { key: "cloud", name: { en: "Cloud", nl: "Cloud" }, x: 0.14, y: 0.22 },
         { key: "devops", name: { en: "DevOps", nl: "DevOps" }, x: 0.4, y: 0.14 },
-        { key: "security", name: { en: "Security", nl: "Security" }, x: 0.68, y: 0.2, requires: "cloud" },
-        { key: "devsecops", name: { en: "DevSecOps", nl: "DevSecOps" }, x: 0.82, y: 0.5, requires: "devops" },
-        { key: "incident-response", name: { en: "Incident response", nl: "Incident response" }, x: 0.52, y: 0.72, requires: "security" },
-        { key: "architecture", name: { en: "Architecture", nl: "Architectuur" }, x: 0.18, y: 0.74, requires: "devsecops" }
+        { key: "security", name: { en: "Security", nl: "Security" }, x: 0.68, y: 0.2, requires: "cloud", effort: 1.65 },
+        { key: "devsecops", name: { en: "DevSecOps", nl: "DevSecOps" }, x: 0.82, y: 0.5, requires: ["devops", "security"], team: true, effort: 3.2 },
+        { key: "incident-response", name: { en: "Incident response", nl: "Incident response" }, x: 0.52, y: 0.72, requires: "devsecops", team: true, effort: 3.4 },
+        { key: "architecture", name: { en: "Architecture", nl: "Architectuur" }, x: 0.18, y: 0.74, requires: "incident-response", team: true, effort: 3.0 }
       ]
     }
   ];
@@ -439,7 +440,8 @@
       team: Boolean(orb.team),
       requires: orb.requires || null,
       taken: false,
-      progress: 0
+      progress: 0,
+      effort: orb.effort || (orb.team ? 2.65 : 1.4)
     }));
 
     blockers = Array.from({ length: cfg.blockerCount }, (_, index) => {
@@ -473,7 +475,9 @@
   }
 
   function restartGame() {
-    levelIndex = 0;
+    if (state === "WIN") {
+      levelIndex = 0;
+    }
     initLevel();
   }
 
@@ -585,7 +589,7 @@
     if (callTeammate) {
       target = player;
     } else {
-      target = orbs.find((orb) => orb.team && !orb.taken && distance(player, orb) < 62) || null;
+      target = orbs.find((orb) => orb.team && !orb.taken && !isLocked(orb) && distance(player, orb) < 62) || null;
     }
 
     if (!target) {
@@ -685,13 +689,13 @@
       if (orb.team) {
         const teamNear = teammate && teammate.paused <= 0 && distance(teammate, orb) < teammate.r + orb.r;
         if (playerNear && teamNear) {
-          orb.progress += dt * 0.38;
+          orb.progress = clamp(orb.progress + dt / orb.effort, 0, 1);
           if (orb.progress >= 1) {
             collectOrb(orb, cfg);
           }
         }
       } else if (playerNear) {
-        orb.progress += dt * 0.72;
+        orb.progress = clamp(orb.progress + dt / orb.effort, 0, 1);
         if (orb.progress >= 1) {
           collectOrb(orb, cfg);
         }
@@ -741,7 +745,14 @@
   }
 
   function isLocked(orb) {
-    return Boolean(orb.requires && !orbs.find((candidate) => candidate.key === orb.requires && candidate.taken));
+    return requirementsFor(orb).some((key) => !orbs.find((candidate) => candidate.key === key && candidate.taken));
+  }
+
+  function requirementsFor(orb) {
+    if (!orb.requires) {
+      return [];
+    }
+    return Array.isArray(orb.requires) ? orb.requires : [orb.requires];
   }
 
   function shake(duration, power) {
@@ -934,9 +945,13 @@
       }
 
       if (locked) {
-        const required = orbs.find((candidate) => candidate.key === orb.requires);
+        const required = requirementsFor(orb)
+          .map((key) => orbs.find((candidate) => candidate.key === key))
+          .filter(Boolean)
+          .map((candidate) => tr(candidate.name))
+          .join(" + ");
         ctx.fillStyle = "#8d8792";
-        drawCenteredText(`${text().requires}: ${tr(required.name)}`, orb.x, orb.y + orb.r + 15, 118, 9, 7);
+        drawCenteredText(`${text().requires}: ${required}`, orb.x, orb.y + orb.r + 15, 126, 9, 7);
       }
 
       ctx.textAlign = "start";
